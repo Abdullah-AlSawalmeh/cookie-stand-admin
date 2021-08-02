@@ -11,6 +11,7 @@ const Form = ({ setCookie }) => {
       avgCookies: e.target.avg_cks_sale.value,
     };
     setCookie((preState) => [...preState, cookie]);
+    event.target.reset();
   }
   return (
     <form className="flex flex-col" onSubmit={submitHandler}>

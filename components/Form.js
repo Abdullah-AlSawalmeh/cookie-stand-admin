@@ -1,4 +1,5 @@
 import FormTextInput from "./FormTextInput";
+import React, { useState } from "react";
 
 const Form = ({ setCookie }) => {
   function submitHandler(e) {
@@ -26,11 +27,11 @@ const Form = ({ setCookie }) => {
           id_name="min_cus_hour"
         ></FormTextInput>
         <FormTextInput
-          label="Minimum Customers per Hour"
+          label="Maximum Customers per Hour"
           id_name="max_cus_hour"
         ></FormTextInput>
         <FormTextInput
-          label="Minimum Customers per Hour"
+          label="avgerage Cookies per Sale"
           id_name="avg_cks_sale"
         ></FormTextInput>
         <div className="flex items-center justify-center w-3/12 ">

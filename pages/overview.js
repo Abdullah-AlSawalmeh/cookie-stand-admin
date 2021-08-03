@@ -1,14 +1,16 @@
 import Header from "../components/Header";
 import Card from "../components/Card";
-const about = () => {
+
+const overview = () => {
   return (
     <>
       <Header />
+
       <Card>
-        <h1>About-Us Page</h1>
+        <h1>Overview Page</h1>
       </Card>
     </>
   );
 };
 
-export default about;
+export default overview;

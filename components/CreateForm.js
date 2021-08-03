@@ -1,8 +1,8 @@
 import FormTextInput from "./FormTextInput";
 import React, { useState } from "react";
 
-const Form = ({ setCookie }) => {
-  function submitHandler(e) {
+const CreateForm = ({ setReports }) => {
+  function onCreate(e) {
     e.preventDefault();
     let cookie = {
       location: e.target.location.value,
@@ -10,11 +10,24 @@ const Form = ({ setCookie }) => {
       maxCusomter: e.target.max_cus_hour.value,
       avgCookies: e.target.avg_cks_sale.value,
     };
-    setCookie((preState) => [...preState, cookie]);
+    let max_cus = cookie.maxCusomter;
+    let min_cus = cookie.minCustomer;
+    let numberOfCustomersHourlyLocationArray = [[cookie.location]];
+    let numberOfCustomersHourlyArray = [];
+    for (let i = 0; i < 14; i++) {
+      numberOfCustomersHourlyArray.push(
+        Math.floor(Math.random() * (max_cus - min_cus) + min_cus)
+      );
+    }
+    numberOfCustomersHourlyLocationArray.push(numberOfCustomersHourlyArray);
+    setReports((preState) => [
+      ...preState,
+      numberOfCustomersHourlyLocationArray,
+    ]);
     event.target.reset();
   }
   return (
-    <form className="flex flex-col" onSubmit={submitHandler}>
+    <form className="flex flex-col " onSubmit={onCreate}>
       <div className="flex justify-content-center mb-4 ">
         <label className="w-1/12" for="location">
           Location
@@ -32,7 +45,7 @@ const Form = ({ setCookie }) => {
           id_name="max_cus_hour"
         ></FormTextInput>
         <FormTextInput
-          label="avgerage Cookies per Sale"
+          label="Avgerage Cookies per Sale"
           id_name="avg_cks_sale"
         ></FormTextInput>
         <div className="flex items-center justify-center w-3/12 ">
@@ -41,6 +54,7 @@ const Form = ({ setCookie }) => {
             type="submit"
             id="my_input"
             name="my_input"
+            value="Create"
           />
         </div>
       </div>
@@ -48,4 +62,4 @@ const Form = ({ setCookie }) => {
   );
 };
 
-export default Form;
+export default CreateForm;

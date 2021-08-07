@@ -1,7 +1,8 @@
 import FormTextInput from "./FormTextInput";
 import React, { useState } from "react";
+import axios from "axios";
 
-const CreateForm = ({ setReports }) => {
+const CreateForm = ({ setReports, token }) => {
   function onCreate(e) {
     e.preventDefault();
     let cookie = {
@@ -20,10 +21,21 @@ const CreateForm = ({ setReports }) => {
       );
     }
     numberOfCustomersHourlyLocationArray.push(numberOfCustomersHourlyArray);
-    setReports((preState) => [
-      ...preState,
-      numberOfCustomersHourlyLocationArray,
-    ]);
+    const config = { headers: { Authorization: "Bearer " + token } };
+    let data = {
+      location: cookie.location,
+      description: "",
+      hourly_sales: numberOfCustomersHourlyArray,
+      minimum_customers_per_hour: cookie.minCustomer,
+      maximum_customers_per_hour: cookie.maxCusomter,
+      average_cookies_per_sale: cookie.avgCookies,
+      owner: 1,
+    };
+    axios.post(
+      "https://cookie-stand-api.herokuapp.com/api/v1/cookie-stands/",
+      data,
+      config
+    );
     event.target.reset();
   }
   return (
@@ -54,7 +66,7 @@ const CreateForm = ({ setReports }) => {
             type="submit"
             id="my_input"
             name="my_input"
-            value="Create"
+            value="Create Stand"
           />
         </div>
       </div>

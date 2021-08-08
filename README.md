@@ -30,4 +30,8 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 # cookie-stand-admin
 
-Start working on lab 38
+Deployed link
+
+https://cookie-stand-admin-gilt.vercel.app/
+
+Thank you
